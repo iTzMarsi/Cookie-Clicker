@@ -1,0 +1,139 @@
+def prestige_upgrade():
+    global prestige_upgrade_price
+    global prestige_level
+    global prestige_multiplier
+    global money
+    if money >= prestige_upgrade_price:
+        money -= prestige_upgrade_price
+        prestige_multiplier += 1
+        Console("Congratulation! Multiplier: " + str(prestige_multiplier) + "x")
+        Prestige_Label.config(text="Prestige Multiplier: " + str(prestige_multiplier))
+        prestige_upgrade_price += int(prestige_upgrade_price / 4)
+
+        # Reset other stats
+        global autoclicker1_level
+        global autoclicker1_reward
+        global autoclicker1_upgrade_price
+
+        global autoclicker2_level
+        global autoclicker2_reward
+        global autoclicker2_upgrade_price
+
+        global autoclicker3_level
+        global autoclicker3_reward
+        global autoclicker3_upgrade_price
+
+        global clicker_level
+        global click_reward
+
+        global clicker_upgrade_price 
+
+        global autoclicker_reward
+
+        clicker_upgrade_price = 10
+        clicker_level = 1
+        click_reward = 1
+
+        money = 0
+        autoclicker1_level = 1
+        autoclicker2_level = 1
+        autoclicker3_level = 1
+
+        autoclicker1_reward = 0
+        autoclicker2_reward = 0
+        autoclicker3_reward = 0
+
+        autoclicker1_upgrade_price = 100
+        autoclicker2_upgrade_price = 5000
+        autoclicker3_upgrade_price = 250000
+
+        autoclicker_reward = 0
+
+        ClickUpgrade.config(text = "Upgrade Clicker [1] | Price: " + str(clicker_upgrade_price))
+        Money_Label.config(text = "Money: 0" )
+        Reward_Label.config(text = "Money per click: " + str(int(click_reward * prestige_multiplier)))
+        Auto_Reward_Label.config(text = "Money per second: 0")
+        Autoclicker1_Upgrade.config(text = "Upgrade Autoclicker1 [0] | Price: " + str(autoclicker1_upgrade_price))
+        Autoclicker2_Upgrade.config(text = "Upgrade Autoclicker2 [0] | Price: " + str(autoclicker2_upgrade_price))
+        Autoclicker3_Upgrade.config(text = "Upgrade Autoclicker3 [0] | Price: " + str(autoclicker3_upgrade_price))
+
+        Prestige.config(text = "Prestige Level ["+ str(prestige_multiplier) +"x] | Upgrade for: " + str(prestige_upgrade_price))
+    else:
+        Console("You don't have enough money to do that!")
+
+
+def autoclicker1_upgrade():
+    global autoclick_timer
+    global money
+    global autoclicker_reward
+    global autoclicker1_reward
+    global autoclicker1_upgrade_price
+    global autoclicker1_level
+    if autoclicker1_level <= 10:
+        if money >= autoclicker1_upgrade_price:
+            autoclicker1_level += 1
+            money -= autoclicker1_upgrade_price
+            autoclicker1_upgrade_price += int(autoclicker1_upgrade_price / 2)
+            Money_Label.config(text="Money: " + str(money))
+            autoclicker1_reward += 2 * autoclicker1_level + int((autoclicker1_level / 10) + 1 * 5)
+            autoclicker_reward_refresh()
+            Auto_Reward_Label.config(text="Money per second: " + str(autoclicker_reward))
+            if autoclicker1_level < 11:
+                Autoclicker1_Upgrade.config(text = "Upgrade Autoclicker1 [" + str(autoclicker1_level - 1) + "] | Price: " + str(autoclicker1_upgrade_price))
+            else:
+                Autoclicker1_Upgrade.config(text = "Upgrade Autoclicker1 [Max]")
+        else:
+            Console("You don't have enough money to do that!")
+    else:
+        Console("Autoclicker1 already maxed out!")
+
+def autoclicker2_upgrade():
+    global autoclick_timer
+    global money
+    global autoclicker_reward
+    global autoclicker2_reward
+    global autoclicker2_upgrade_price
+    global autoclicker2_level
+    if autoclicker2_level <= 10:
+        if money >= autoclicker2_upgrade_price:
+            autoclicker2_level += 1
+            money -= autoclicker2_upgrade_price
+            autoclicker2_upgrade_price += int(autoclicker2_upgrade_price / 2)
+            Money_Label.config(text="Money: " + str(money))
+            autoclicker2_reward += 100 * autoclicker2_level + int((autoclicker2_level / 10) + 1 * 250)
+            autoclicker_reward_refresh()
+            Auto_Reward_Label.config(text="Money per second: " + str(autoclicker_reward))
+            if autoclicker2_level < 11:
+                Autoclicker2_Upgrade.config(text = "Upgrade Autoclicker2 [" + str(autoclicker2_level - 1) + "] | Price: " + str(autoclicker2_upgrade_price))
+            else:
+                Autoclicker2_Upgrade.config(text = "Upgrade Autoclicker2 [Max]")
+        else:
+            Console("You don't have enough money to do that!")
+    else:
+        Console("Autoclicker2 already maxed out!")
+
+def autoclicker3_upgrade():
+    global autoclick_timer
+    global money
+    global autoclicker_reward
+    global autoclicker3_reward
+    global autoclicker3_upgrade_price
+    global autoclicker3_level
+    if autoclicker3_level <= 10:
+        if money >= autoclicker3_upgrade_price:
+            autoclicker3_level += 1
+            money -= autoclicker3_upgrade_price
+            autoclicker3_upgrade_price += int(autoclicker3_upgrade_price / 2)
+            Money_Label.config(text="Money: " + str(money))
+            autoclicker3_reward += 4000 * autoclicker3_level + int((autoclicker3_level / 10) + 1 * 2500)
+            autoclicker_reward_refresh()
+            Auto_Reward_Label.config(text="Money per second: " + str(autoclicker_reward))
+            if autoclicker3_level < 11:
+                Autoclicker3_Upgrade.config(text = "Upgrade Autoclicker3 [" + str(autoclicker3_level - 1) + "] | Price: " + str(autoclicker3_upgrade_price))
+            else:
+                Autoclicker3_Upgrade.config(text = "Upgrade Autoclicker3 [Max]")
+        else:
+            Console("You don't have enough money to do that!")
+    else:
+        Console("Autoclicker3 already maxed out!")
+
